@@ -6,3 +6,13 @@ to handle Moorche inventory
 4.allow check out of products
 
 thats it for now
+
+more dool to come
+
+<html>
+<h1> this is h1</h1>
+</html>
+
+* 1
+* 2
+* 4
