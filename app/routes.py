@@ -6,6 +6,8 @@ from flask import request
 from flask import json
 from forms import ADDInv
 from werkzeug.exceptions import HTTPException
+from werkzeug.utils import secure_filename
+
 
 
 #Defining default for route leads to closed routing system
@@ -68,3 +70,16 @@ def addProducts():
 @app.route('/anbar')
 def anbar():
     return "<html> <td>Glabi<td></html>"
+
+
+@app.route('/uploader', methods = ['GET', 'POST'])
+def uploader():
+    import os.path
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(os.path.join('img', secure_filename(f.filename)))
+
+        # f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+        return 'file uploaded successfully'
+    else:
+        return render_template('upload.html')
