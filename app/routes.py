@@ -77,7 +77,9 @@ def uploader():
     import os.path
     if request.method == 'POST':
         f = request.files['file']
-        f.save(os.path.join('img', secure_filename(f.filename)))
+        os.makedirs(os.path.join(app.instance_path, 'img'), exist_ok=True)
+        f.save(os.path.join(app.instance_path, 'img', secure_filename(f.filename)))
+
 
         # f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
         return 'file uploaded successfully'
