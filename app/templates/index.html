@@ -23,5 +23,27 @@
        <p>{{ form.submit() }}</p>
    </form>
    {%endif%}
+
+
+   <h2>The XMLHttpRequest Object</h2>
+
+   <div id="demo">
+   <p>Let AJAX change this text.</p>
+   <button type="button" onclick="loadDoc()">Change Content</button>
+   </div>
+
+   <script>
+   function loadDoc() {
+     const xhttp = new XMLHttpRequest();
+     xhttp.onload = function() {
+       document.getElementById("demo").innerHTML = this.responseText;
+     }
+     xhttp.open("GET", "/echoJSON");
+     xhttp.send();
+   }
+   </script>
+
+
+
   </body>
 </html>

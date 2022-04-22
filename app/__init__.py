@@ -1,22 +1,10 @@
 from flask import Flask
 from conf import Conf
-from flask_login import LoginManager
-app = Flask(__name__)
+from constructs.inventory import Inventory
+# from flask_login import LoginManager
+app = Flask(__name__,)
 logs=[]
-inventory = {
-    "apple": {
-        "description": "apple",
-        "qty": 30
-    },
-    "cherry": {
-        "description": "orange",
-        "qty": 500
-    },
-    "mango": {
-        "description": "baloot",
-        "qty": 500
-    }
-}
+
 
 app.config.from_object(Conf)
 # from views import InventoryApi,InventoryItemApi

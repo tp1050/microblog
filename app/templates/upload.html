@@ -1,5 +1,9 @@
 <html>
+
    <body>
+      {% if message %}
+      <h1> {{message}} </h1>
+      {%endif%}
       <form action = "http://localhost:5000/uploader" method = "POST"
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />

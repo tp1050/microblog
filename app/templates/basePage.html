@@ -2,10 +2,15 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>This is product Addition Page</title>
+    {% if title %}
+    {% set thisTitle=title %}
+    {% else %}
+    {% set title="Nothing"%}
+    {% endif %}
+
+    <title>{{title}}</title>
   </head>
   <body>
-   {% block content %}
-   {% block goje %}
+
   </body>
 </html>

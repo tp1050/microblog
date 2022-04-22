@@ -1,4 +1,5 @@
 from app import app
+from app import Inventory
 from flask import jsonify
 from app import logs
 from flask import render_template
@@ -7,6 +8,8 @@ from flask import json
 from forms import ADDInv
 from werkzeug.exceptions import HTTPException
 from werkzeug.utils import secure_filename
+from pathlib import Path
+
 
 
 
@@ -44,10 +47,13 @@ from werkzeug.utils import secure_filename
 #     # print(request.get_data())
 #     print('beforish')
 
-@app.route('/echoJSON', methods=['POST'])
+@app.route('/echoJSON', methods=['POST','GET'])
 def echoJSON():
-    data = request.json
-    return jsonify(data)
+    if request.method=='POST':
+        data = request.json
+        return jsonify(data)
+    else:
+        return Inventory
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -71,17 +77,22 @@ def addProducts():
 def anbar():
     return "<html> <td>Glabi<td></html>"
 
-
+@app.route('/test')
+def test():
+    return render_template("basePage.html")
 @app.route('/uploader', methods = ['GET', 'POST'])
 def uploader():
     import os.path
     if request.method == 'POST':
         f = request.files['file']
         os.makedirs(os.path.join(app.instance_path, 'img'), exist_ok=True)
-        f.save(os.path.join(app.instance_path, 'img', secure_filename(f.filename)))
-
+        from pathlib import Path
+        if Path(os.path.join(app.instance_path, 'img', secure_filename(f.filename))).is_file():
+            return render_template('upload.html',message='file already exists')
+        else:
+            f.save(os.path.join(app.instance_path, 'img', secure_filename(f.filename)))
 
         # f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
-        return 'file uploaded successfully'
+        return render_template('upload.html',message='file uploaded successfully')
     else:
         return render_template('upload.html')

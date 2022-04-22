@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, FileField
 from wtforms.validators import DataRequired
 
 
@@ -22,3 +22,7 @@ class ADDInv(FlaskForm):
     qty=StringField(label="qty",id="qty")
     description=StringField(label="description",id="description")
     submit=SubmitField(label='submit')
+
+class upload(FlaskForm):
+    file = FileField('uplod file')
+    submit = SubmitField('Submit')
