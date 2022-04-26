@@ -1,3 +1,5 @@
+from constructs import file_cats
+import os.path
 from app import app
 from app import Inventory
 from flask import jsonify
@@ -9,6 +11,7 @@ from forms import ADDInv
 from werkzeug.exceptions import HTTPException
 from werkzeug.utils import secure_filename
 from pathlib import Path
+
 
 
 
@@ -82,17 +85,19 @@ def test():
     return render_template("basePage.html")
 @app.route('/uploader', methods = ['GET', 'POST'])
 def uploader():
-    import os.path
+
     if request.method == 'POST':
         f = request.files['file']
-        os.makedirs(os.path.join(app.instance_path, 'img'), exist_ok=True)
-        from pathlib import Path
-        if Path(os.path.join(app.instance_path, 'img', secure_filename(f.filename))).is_file():
+        f_name = secure_filename(f.filename)
+        suff=Path(f_name).suffix
+        print(suff)
+        directory=file_cats.File_Cat.get(suff[1:],'.misc')
+        print(directory)
+
+        if Path(os.path.join(app.instance_path, directory, f_name )).is_file():
             return render_template('upload.html',message='file already exists')
         else:
-            f.save(os.path.join(app.instance_path, 'img', secure_filename(f.filename)))
-
-        # f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+            f.save(Path(os.path.join(app.instance_path, directory, f_name )))
         return render_template('upload.html',message='file uploaded successfully')
     else:
         return render_template('upload.html')
