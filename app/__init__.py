@@ -1,11 +1,14 @@
 from flask import Flask
 from conf import Conf
 from constructs.inventory import Inventory
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import os
 # from flask_login import LoginManager
 app = Flask(__name__,instance_relative_config=True)
 logs=[]
-
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 app.config.from_object(Conf)
 os.makedirs(os.path.join(app.instance_path, 'img'), exist_ok=True)
