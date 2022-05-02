@@ -1,4 +1,3 @@
-import pathlib
 class Conf(object):
     SECRET_KEY = "22111357"
     UPLOAD_FOLDER='/img'

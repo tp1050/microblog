@@ -6,17 +6,18 @@ from flask_migrate import Migrate
 import os
 # from flask_login import LoginManager
 app = Flask(__name__,instance_relative_config=True)
-logs=[]
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
-app.config.from_object(Conf)
+
+
 os.makedirs(os.path.join(app.instance_path, 'img'), exist_ok=True)
 os.makedirs(os.path.join(app.instance_path, 'doc'), exist_ok=True)
 os.makedirs(os.path.join(app.instance_path, 'sound'), exist_ok=True)
 os.makedirs(os.path.join(app.instance_path, 'code'), exist_ok=True)
 os.makedirs(os.path.join(app.instance_path, 'misc'), exist_ok=True)
-
+logs=[]
+app.config.from_object(Conf)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # from views import InventoryApi,InventoryItemApi
 #
@@ -26,3 +27,4 @@ os.makedirs(os.path.join(app.instance_path, 'misc'), exist_ok=True)
 # login_manager.init_app(app)
 
 from app import routes
+from app import models
