@@ -1,6 +1,6 @@
 from flask import Flask
-from conf import Conf
-from constructs.inventory import Inventory
+from .conf import Conf
+from .constructs.inventory import Inventory
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os

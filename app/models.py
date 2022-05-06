@@ -1,4 +1,5 @@
 from app import db
+from datetime import datetime
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,3 +20,21 @@ class User(db.Model):
 
     def get_id(self):
         return self.id
+    post=db.relationship('Post',backref='author',lazy='dynamic',)
+
+class Top_model(db.model):
+    id=db.Column(db.Integer,primary_key=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return '<Post {}>'.format(self.body)
+class meals(db.model):
+    id=db.Column(db.Integer,primary_key=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
