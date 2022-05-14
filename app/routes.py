@@ -66,11 +66,9 @@ def index():
         ip = request.environ['REMOTE_ADDR']
     else:
         ip = request.environ['HTTP_X_FORWARDED_FOR'] # if behind a proxy
-    logs.append(ip)
-    print('index')
-    print(request.environ.items())
-    print('indexed')
-    return render_template("index.html", title=str(logs),user={'name':ip},ip=ip)
+    stmt=f'<html><body><h1>Hello</h1></body></html> {ip}'
+    return stmt
+
 
 @app.route('/addProduct')
 def addProducts():

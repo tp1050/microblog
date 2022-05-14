@@ -5,15 +5,15 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
 # from flask_login import LoginManager
-app = Flask(__name__,instance_relative_config=True)
+app = Flask('Kooft',instance_relative_config=True)
 
 
 
-os.makedirs(os.path.join(app.instance_path, 'img'), exist_ok=True)
-os.makedirs(os.path.join(app.instance_path, 'doc'), exist_ok=True)
-os.makedirs(os.path.join(app.instance_path, 'sound'), exist_ok=True)
-os.makedirs(os.path.join(app.instance_path, 'code'), exist_ok=True)
-os.makedirs(os.path.join(app.instance_path, 'misc'), exist_ok=True)
+# os.makedirs(os.path.join(app.instance_path, 'img'), exist_ok=True)
+# os.makedirs(os.path.join(app.instance_path, 'doc'), exist_ok=True)
+# os.makedirs(os.path.join(app.instance_path, 'sound'), exist_ok=True)
+# os.makedirs(os.path.join(app.instance_path, 'code'), exist_ok=True)
+# os.makedirs(os.path.join(app.instance_path, 'misc'), exist_ok=True)
 logs=[]
 app.config.from_object(Conf)
 db = SQLAlchemy(app)

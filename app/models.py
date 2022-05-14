@@ -22,9 +22,13 @@ class User(db.Model):
         return self.id
     post=db.relationship('Post',backref='author',lazy='dynamic',)
 
-class Top_model(db.model):
+class Top_model(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    ganush=db.Column(db.String(64), index=True, unique=True)
+
+class U2(Top_model):
+    gijooo=db.Column(db.String(65),default="Zoootal")
 
 
 class Post(db.Model):
@@ -35,6 +39,6 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
-class meals(db.model):
+class meals(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
