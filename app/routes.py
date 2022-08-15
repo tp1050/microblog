@@ -1,4 +1,4 @@
-from .constructs import file_cats
+from constructs import file_cats
 import os.path
 from app import app
 from app import Inventory
@@ -7,7 +7,7 @@ from app import logs
 from flask import render_template
 from flask import request
 from flask import json
-from .forms import ADDInv
+from forms import ADDInv
 from werkzeug.exceptions import HTTPException
 from werkzeug.utils import secure_filename
 from pathlib import Path
@@ -68,6 +68,9 @@ def index():
         ip = request.environ['HTTP_X_FORWARDED_FOR'] # if behind a proxy
     stmt=f'<html><body><h1>Hello</h1></body></html> {ip}'
     return stmt
+
+
+
 
 
 @app.route('/addProduct')

@@ -4,3 +4,4 @@ class Conf(object):
     instance_relative_config=True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///app.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    host="0.0.0.0"

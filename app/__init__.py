@@ -1,3 +1,5 @@
+
+
 from flask import Flask
 from .conf import Conf
 from .constructs.inventory import Inventory

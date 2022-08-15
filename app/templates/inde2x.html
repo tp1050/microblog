@@ -1,0 +1,49 @@
+<<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>i am  {{title}}</title>
+  </head>
+  <body>
+   hello {{user.name}}
+
+   {%if form%}
+   <h1>Sign In</h1>
+   <form action="/api/inventory/apple" method="post" novalidate>
+       {{ form.hidden_tag() }}
+       <p>
+           {{ form.item_name.label }}<br>
+           {{ form.item_name(size=32) }}
+       </p>
+       <p>
+           {{ form.description.label }}<br>
+           {{ form.description(size=32) }}
+       </p>
+       <p></p>
+       <p>{{ form.submit() }}</p>
+   </form>
+   {%endif%}
+
+
+   <h2>The XMLHttpRequest Object</h2>
+
+   <div id="demo">
+   <p>Let AJAX change this text.</p>
+   <button type="button" onclick="loadDoc()">Change Content</button>
+   </div>
+
+   <script>
+   function loadDoc() {
+     const xhttp = new XMLHttpRequest();
+     xhttp.onload = function() {
+       document.getElementById("demo").innerHTML = this.responseText;
+     }
+     xhttp.open("GET", "/echoJSON");
+     xhttp.send();
+   }
+   </script>
+
+
+
+  </body>
+</html>

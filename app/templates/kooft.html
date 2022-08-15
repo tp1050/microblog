@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% block content %}
+<body>
+<h3> Enter your daily kooft </h3>
+<form action="" method='POST' name="myform">
+    {{ form.csrt_token }}
+    {{ form.user_name.label }}  {{form.hidden_tag()}}
+
+    {{ form.until.label }} {{form.until(class='datepicker')}} {{form.hidden_tag()}}
+
+    <p>
+    {{form.submit()}}
+    </p>
+</form>
+</body>
+{% endblock %}
+{% block Morteza %}
+<a href="https://yahoo.com">Yahoo</a>
+{% endblock %}

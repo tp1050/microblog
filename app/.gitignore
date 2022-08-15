@@ -1,0 +1,10 @@
+*.jpg
+*.png
+*.pyc
+*.json
+*.db
+*.txt
+
+
+*.c
+*.dool

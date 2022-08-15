@@ -1,49 +1,19 @@
-<<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>i am  {{title}}</title>
-  </head>
-  <body>
-   hello {{user.name}}
+{% extends 'base.html'%}
+{% block content %}
+<body>
+<h3> Select a date range </h3>
+<form action="echoJSON" method='POST' name="myform">
 
-   {%if form%}
-   <h1>Sign In</h1>
-   <form action="/api/inventory/apple" method="post" novalidate>
-       {{ form.hidden_tag() }}
-       <p>
-           {{ form.item_name.label }}<br>
-           {{ form.item_name(size=32) }}
-       </p>
-       <p>
-           {{ form.description.label }}<br>
-           {{ form.description(size=32) }}
-       </p>
-       <p></p>
-       <p>{{ form.submit() }}</p>
-   </form>
-   {%endif%}
-
-
-   <h2>The XMLHttpRequest Object</h2>
-
-   <div id="demo">
-   <p>Let AJAX change this text.</p>
-   <button type="button" onclick="loadDoc()">Change Content</button>
-   </div>
-
-   <script>
-   function loadDoc() {
-     const xhttp = new XMLHttpRequest();
-     xhttp.onload = function() {
-       document.getElementById("demo").innerHTML = this.responseText;
-     }
-     xhttp.open("GET", "/echoJSON");
-     xhttp.send();
-   }
-   </script>
-
-
-
-  </body>
-</html>
+<p>
+    {{form.user_name.lable}} {{form.user_name()}} {{form.hidden_tag()}}
+    {{form.food_item.label}} {{form.food_item()}} {{form.hidden_tag()}}
+    {{form.calories.label}} {{form.calories()}} {{form.hidden_tag()}}
+    {{form.time_koofted.label}}  {{form.time_koofted(class='datepicker')}} {{form.hidden_tag()}}
+    {{form.submit()}}
+    </p>
+</form>
+</body>
+{% endblock %}
+{% block Morteza %}
+<a href="https://yahoo.com">Yahoo</a>
+{% endblock %}
